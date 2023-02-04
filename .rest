@@ -18,3 +18,24 @@ Content-Type: application/json
   "isMagic" : "true",
   "value" : "1600"
 }
+###
+// DEPLOYED TEST
+GET https://indana-jones-api.onrender.com/artifacts HTTP/1.1
+Content-Type: application/json
+
+###
+GET https://indana-jones-api.onrender.com/artifacts/63dee70190d4a76c3ef2d512 HTTP/1.1
+Content-Type: application/json
+
+###
+POST https://indana-jones-api.onrender.com/artifacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "name" : "Ark of the Covenant",
+  "type" : "Religious",
+  "dateAquired" : "1936-06-09",
+  "details" : "The ark of the covenant holding the 10 commandments. Don't open it :)",
+  "isMagic" : "true",
+  "value" : "1000000000"
+}
