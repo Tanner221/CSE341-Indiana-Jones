@@ -1,0 +1,20 @@
+// LOCAL TEST
+GET http://localhost:3000/artifacts HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:3000/artifacts/63dedff022b3605c52585f1f HTTP/1.1
+Content-Type: application/json
+
+###
+POST http://localhost:3000/artifacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "name" : "Sankara Stones",
+  "type" : "Religious Stones",
+  "dateAquired" : "1935-03-04",
+  "details" : "Glowing stones found by Indiana Jones in the temple of Doom",
+  "isMagic" : "true",
+  "value" : "1600"
+}

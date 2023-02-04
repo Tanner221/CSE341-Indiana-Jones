@@ -1,0 +1,75 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Indiana Jones Artifacts",
+    "description": "All of these artifacts belong in a museum",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/artifacts/": {
+      "get": {
+        "tags":["Artifacts"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags":["Artifacts"],
+        "description": "",
+        "parameters": [
+          {
+            "name" : "name",
+            "type" : "string",
+            "description" : "Name of the artifact"
+          },
+          {
+            "name" : "type",
+            "type" : "string",
+            "description" : "Artifact type"
+          },
+          {
+            "name" : "dateAquired",
+            "type" : "string",
+            "description" : "When did Indiana Jones aquire the artifact"
+          },
+          {
+            "name" : "details",
+            "type" : "string",
+            "description" : "relative details about the artifact"
+          },
+          {
+            "name" : "isMagic",
+            "type" : "boolean",
+            "description" : "Is the item magic"
+          },
+          {
+            "name" : "value",
+            "type" : "float",
+            "description" : "Name of the artifact"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/artifacts/{id}": {
+      "get": {
+        "tags":["Artifacts"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    }
+  }
+}
