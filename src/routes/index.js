@@ -7,6 +7,7 @@ routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 
 routes.use('/artifacts', require('./artifacts'));
+routes.use('/museums', require('./museums'))
 
 //check profile information
 routes.get('/profile', (req, res) => {
