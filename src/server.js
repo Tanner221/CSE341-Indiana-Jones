@@ -1,10 +1,27 @@
 const express = require('express');
 const mongodb = require('./db/connect');
 const bodyParser = require('body-parser');
+const { auth } = require('express-openid-connect');
 
 const app = express();
 
 const port = process.env.PORT || 3000;
+
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: 'f6802ea11bfd3a9773f39368b76ba76bbbcc14bdfd6c21f259c0412d549cfef2',
+  baseURL: 'http://localhost:3000',
+  clientID: 'ElAPTH1JHF0nhOXIEpaZlNDzzE2p26t4',
+  issuerBaseURL: 'https://dev-0rfxbcr1u4f5ecdw.us.auth0.com'
+};
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
 
 app
 .use(express.json())
@@ -17,6 +34,7 @@ app
   next();
 })
 .use('/', require('./routes'));
+
 
 process.on('uncaughtException', (err, origin) => {
   console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);

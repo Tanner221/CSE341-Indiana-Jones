@@ -8,4 +8,8 @@ routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 routes.use('/artifacts', require('./artifacts'));
 
+//check profile information
+routes.get('/profile', (req, res) => {
+  res.send(JSON.stringify(req.oidc.user))
+})
 module.exports = routes;
