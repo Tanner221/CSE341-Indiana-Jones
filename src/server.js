@@ -10,8 +10,8 @@ const port = process.env.PORT || 3000;
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: 'f6802ea11bfd3a9773f39368b76ba76bbbcc14bdfd6c21f259c0412d549cfef2',
-  baseURL: 'http://localhost:3000',
+  secret: process.env.SECRET,
+  baseURL: process.env.BASE_URL,
   clientID: 'ElAPTH1JHF0nhOXIEpaZlNDzzE2p26t4',
   issuerBaseURL: 'https://dev-0rfxbcr1u4f5ecdw.us.auth0.com'
 };
