@@ -60,7 +60,8 @@ const addArtifact = async (req, res) => {
     dateAquired: req.body.dateAquired,
     details: req.body.details,
     isMagic: req.body.isMagic,
-    value: req.body.value
+    value: req.body.value,
+    addedBy: req.body.addedBy,
   }
   const result = await mongodb.getDb().db('IndianaJones').collection('Artifacts').insertOne(newArtifact);
 
@@ -74,8 +75,73 @@ const addArtifact = async (req, res) => {
   }
 }
 
+const updateArtifact = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  
+  let ArtifactId;
+  try{
+     ArtifactId = new ObjectId(req.params.id);
+  }
+  catch(e){
+    if(e instanceof BSONTypeError){
+      res.status(400).json({
+        message: "Bad id type"
+      })
+    }
+  }
+
+  const Artifact = {
+    name: req.body.name,
+    type: req.body.type,
+    dateAquired: req.body.dateAquired,
+    details: req.body.details,
+    isMagic: req.body.isMagic,
+    value: req.body.value,
+    addedBy: req.body.addedBy,
+  }
+
+  const result = await mongodb.getDb().db('IndianaJones').collection('Artifacts').replaceOne({ _id: ArtifactId }, Artifact);
+
+  if (result.modifiedCount > 0) {
+    res.status(200).json({
+      message: 'Contact Modified Sucessfully',
+      body: result
+    });
+  } else {
+    res.status(500).json(res.error || 'Unknown Error Occured');
+  }
+}
+
+const deleteArtifact = async (req, res) => {
+  //check for Id
+  let ArtifactId;
+  try{
+     ArtifactId = new ObjectId(req.params.id);
+  }
+  catch(e){
+    if(e instanceof BSONTypeError){
+      res.status(400).json({
+        message: "Bad id type"
+      })
+    }
+  }
+
+  const result = await mongodb.getDb().db('IndianaJones').collection('Artifacts').remove({ _id: ArtifactId }, true);
+
+  if (result.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(result.error || 'Unknown Error Ocurred');
+  }
+}
+
 module.exports = {
   returnArtifacts,
   returnArtifact,
-  addArtifact
+  addArtifact,
+  updateArtifact,
+  deleteArtifact
 }

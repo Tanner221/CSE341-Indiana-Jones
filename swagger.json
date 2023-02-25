@@ -5,16 +5,36 @@
     "description": "All of these artifacts belong in a museum",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://indana-jones-api.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "tags": ["Tests"],
+        "description": "Displays if the user is logged in or not",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "tags": ["Tests"],
+        "description": "Shows the api documentation through swagger",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/profile": {
       "get": {
-        "tags":["Test Paths"],
-        "description": "",
+        "tags": ["Tests"],
+        "description": "Displays the profile information for the current logged in user",
         "parameters": [],
         "responses": {
           "200": {
@@ -25,7 +45,7 @@
     },
     "/artifacts/": {
       "get": {
-        "tags":["Artifacts"],
+        "tags" : ["Artifacts"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -38,7 +58,7 @@
         }
       },
       "post": {
-        "tags":["Artifacts"],
+        "tags" : ["Artifacts"],
         "description": "",
         "parameters": [
           {
@@ -48,22 +68,25 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "type": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "dateAquired": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "details": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "isMagic": {
-                  "example": "boolean"
+                  "example": "any"
                 },
                 "value": {
-                  "example": "float"
+                  "example": "any"
+                },
+                "addedBy": {
+                  "example": "any"
                 }
               }
             }
@@ -83,8 +106,9 @@
       }
     },
     "/artifacts/{id}": {
+      "tags" : ["Artifacts"],
       "get": {
-        "tags":["Artifacts"],
+        "tags" : ["Artifacts"],
         "description": "",
         "parameters": [
           {
@@ -105,23 +129,137 @@
             "description": "Not Found"
           }
         }
+      },
+      "put": {
+        "tags" : ["Artifacts"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "dateAquired": {
+                  "example": "any"
+                },
+                "details": {
+                  "example": "any"
+                },
+                "isMagic": {
+                  "example": "any"
+                },
+                "value": {
+                  "example": "any"
+                },
+                "addedBy": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags" : ["Artifacts"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/museums/": {
       "get": {
-        "tags":["Museums"],
+        "tags" : ["Museums"],
         "description": "",
         "parameters": [],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags" : ["Museums"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "artifact_count": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/museums/{id}": {
       "get": {
-        "tags":["Museums"],
+        "tags" : ["Museums"],
         "description": "",
         "parameters": [
           {
@@ -137,6 +275,70 @@
           },
           "400": {
             "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags" : ["Museums"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "artifact_count": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags" : ["Museums"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
