@@ -5,7 +5,7 @@
     "description": "All of these artifacts belong in a museum",
     "version": "1.0.0"
   },
-  "host": "https://indana-jones-api.onrender.com",
+  "host": "indana-jones-api.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
