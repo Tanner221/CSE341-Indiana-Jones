@@ -16,9 +16,36 @@ Content-Type: application/json
   "dateAquired" : "1935-03-02",
   "details" : "Large diamond that originally belonged to Alexander the Great. Indiana Jones traded it to some chinese gangsters in the temple of doom",
   "isMagic" : "false",
-  "value" : "10000"
+  "value" : "10000",
+  "addedBy" : "Tanner Robinson"
+}
+###
+PUT http://localhost:3000/artifacts/63e80494be5b2f32ff452698 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name" : "Chachapoyan Fertility Idol",
+  "type" : "Religious",
+  "dateAquired" : "1936-05-10",
+  "details" : "The Chachapoyan Fertility Idol was created by the Chachapoyans circa 64 BC,[2] around the same time the Temple of the Warriors was erected to house it.[1] The Chachapoyan priests hid the idol away inside the temple as part of a soldier's rite of passage",
+  "isMagic" : "true",
+  "value" : "20000",
+  "addedBy" : "Tanner Robinson"
 }
 
+###
+DELETE http://localhost:3000/artifacts/63e5311226cb9511511f4203 HTTP/1.1
+Content-Type: application/json
+
+###
+POST http://localhost:3000/museums HTTP/1.1
+Content-Type: application/json
+
+{
+      "name": "Smithsonian Aerospace Museum",
+    "location": "Washington DC",
+    "artifact_count": 5000000
+}
 ###
 // DEPLOYED TEST
 GET https://indana-jones-api.onrender.com/artifacts HTTP/1.1
@@ -33,10 +60,51 @@ POST https://indana-jones-api.onrender.com/artifacts HTTP/1.1
 Content-Type: application/json
 
 {
+  "name" : "Chachapoyan Fertility Idol 2",
+  "type" : "Religious",
+  "dateAquired" : "1936-05-10",
+  "details" : "The Chachapoyan Fertility Idol was created by the Chachapoyans circa 64 BC,[2] around the same time the Temple of the Warriors was erected to house it.[1] The Chachapoyan priests hid the idol away inside the temple as part of a soldier's rite of passage",
+  "isMagic" : "true",
+  "value" : "20000",
+  "addedBy" : "Tanner Robinson"
+}
+###
+
+PUT  https://indana-jones-api.onrender.com/artifacts/63fa9dc154996aa0647d09c2 HTTP/1.1
+Content-Type: application/json
+
+{
   "name" : "Chachapoyan Fertility Idol",
   "type" : "Religious",
   "dateAquired" : "1936-05-10",
   "details" : "The Chachapoyan Fertility Idol was created by the Chachapoyans circa 64 BC,[2] around the same time the Temple of the Warriors was erected to house it.[1] The Chachapoyan priests hid the idol away inside the temple as part of a soldier's rite of passage",
   "isMagic" : "true",
-  "value" : "20000"
+  "value" : "20000",
+  "addedBy" : "Tanner Robinson"
 }
+###
+DELETE https://indana-jones-api.onrender.com/artifacts/63fa9dc154996aa0647d09c2 HTTP/1.1
+Content-Type: application/json
+
+###
+POST  https://indana-jones-api.onrender.com/museums/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Smithsonian Modern Art Museum :)",
+    "location": "Washington DC",
+    "artifact_count": 100000
+}
+###
+PUT  https://indana-jones-api.onrender.com/museums/63fa9e5f54996aa0647d09c3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Smithsonian Modern Art Museum :)",
+    "location": "Washington DC",
+    "artifact_count": 100000
+}
+###
+
+DELETE https://indana-jones-api.onrender.com/museums/63fa9e5f54996aa0647d09c3 HTTP/1.1
+Content-Type: application/json
